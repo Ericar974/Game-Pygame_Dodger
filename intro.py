@@ -1,3 +1,7 @@
+#Hello world
+
+
+
 #x = int(input("x: "))
 #y = int(input("y: "))
 #print(x + y)
@@ -52,7 +56,7 @@ pygame.mixer.music.play()
 loop = False
 game = True
 reset = False
-lvlup = 0
+lvlup = 2
 i = 0
 
 #Player
@@ -61,22 +65,22 @@ p.x = 500
 p.y = 400
 
 #Enemy
-m = Perso()
-m1 = Perso()
-m2 = Perso()
-m3 = Perso()
-mb = Perso()
-mb1 = Perso()
-mc = Perso()
+m = Perso() #yellow
+m1 = Perso()#yellow
+m2 = Perso()#yellow
+m3 = Perso()#yellow
+mb = Perso()#red
+mb1 = Perso()#red
+mc = Perso()#blue
 
 #If they appear
 m1v = False
 m2v = False
 m3v = False
 mcv = False
-mbwhere = random.randint(1,4)
+mbwhere = random.randint(1,4)#whitch side ? (top, left, right, bot)
 
-
+#the game it's self
 while game :
     i += 1
     if lvlup < 0:
@@ -104,9 +108,6 @@ while game :
         mcv = False
         reset = False
         i = 0
-        
-
-
 
     if loop: 
         #screen decoration
@@ -165,7 +166,7 @@ while game :
                 m2.y = m2.y - 6
                 m3.x = m3.x - 6
             
-        # + lvl 2
+        # + lvl 2 add red ennemies
         if lvlup > 0:
         
             if counter == 60 or 0:
@@ -216,7 +217,7 @@ while game :
                 if mbwhere == 4:
                     mb.y -= 30
                     mb1.y -= 30
-        # + lvl 3
+        # + lvl 3 add blue ennemie
         if lvlup > 1:
             if counter == 56:
                 mcv = False
@@ -230,7 +231,6 @@ while game :
             if counter%7 >= 0 and mcv:
                 mc.x = (pygame.time.get_ticks()/1000)%20 * math.sin((pygame.time.get_ticks()/1000)%20)*30 + width/2 
                 mc.y = (pygame.time.get_ticks()/1000)%20 *  math.cos((pygame.time.get_ticks()/1000)%20)*30 + height/2
-        
 
         #colisions
         distm = pow((p.x-(m.y))**2 + ((p.y)-m.x)**2, 0.5)
@@ -286,7 +286,6 @@ while game :
                 m3.x = 2400
             m3.y =  random.randint(2,1000)
 
-
         #Deplacement of the Player
         for event in pygame.event.get():
             if pygame.key.get_pressed()[pygame.K_d]:
@@ -295,7 +294,7 @@ while game :
                 p.y +=10  
             if pygame.key.get_pressed()[pygame.K_z]:
                 p.y -=10  
-            if pygame.key.get_pressed()[pygame.K_a]:
+            if pygame.key.get_pressed()[pygame.K_q]:
                 p.x -=10  
             
             if event.type == pygame.KEYDOWN:
